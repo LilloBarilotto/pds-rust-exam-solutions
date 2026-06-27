@@ -1,5 +1,4 @@
 use std::sync::{Arc, Mutex, Condvar};
-use std::sync::{Mutex, Condvar};
 
 /// Una barriera ciclica che blocca N thread finché tutti non hanno chiamato `wait`.
 /// Questa implementazione usa un contatore di "generazione" per evitare race condition
