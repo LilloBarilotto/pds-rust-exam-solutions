@@ -1,0 +1,6 @@
+[package]
+name = "_2024-01-22_multi-channel"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]

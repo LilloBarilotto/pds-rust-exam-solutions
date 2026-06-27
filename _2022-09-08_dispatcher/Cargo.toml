@@ -1,0 +1,6 @@
+[package]
+name = "_2022-09-08_dispatcher"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]

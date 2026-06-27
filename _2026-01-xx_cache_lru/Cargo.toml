@@ -1,0 +1,6 @@
+[package]
+name = "_2026-01-xx_cache_lru"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]

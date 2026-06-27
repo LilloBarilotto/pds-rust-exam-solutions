@@ -1,0 +1,18 @@
+[workspace]
+resolver = "3"
+members = [
+    "_2022-06-20_looper",
+    "_2022-07-08_execution-limiter",
+    "_2022-09-08_dispatcher",
+    "_2023-01_barrier",
+    "_2023-06-20_mpmc",
+    "_2023-07-07_delayed-queue",
+    "_2023-09-04_cache",
+    "_2024-01-22_multi-channel",
+    "_2024-06-25_exchanger",
+    "_2025-06-17_token_manager",
+    "_2025-07-03_aggregatore_di_misure",
+    "_2025-07_count_down_lock",
+    "_2026-01-xx_cache_lru",
+    "_2026-06-15_forgettable_cometuttolappello",
+]

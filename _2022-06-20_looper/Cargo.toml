@@ -1,0 +1,6 @@
+[package]
+name = "_2022-06-20_looper"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
