@@ -10,13 +10,13 @@ I mutex appunto li utilizziamo per proteggere e legare temporalmente senza race 
 E bene comunque ricordarsi di fare dei drop(guard) prima di azioni lunghe dove non è più necessario il guard per creare attese inutili.
 
 ## Domanda 2
-Non è stato fatto quest'anno process. avanti
+Non è stato fatto quest'anno (a.a. 2025-26) process quindi non ho risposto. avanti
 
 ## Domanda 3
 Il problema delle dipendenze cicliche è dovuto per l'appunto a tutte quelle strutture (per esempio i Nodi) che si fanno riferimento tra loro, e la gestione da parte di Rust della liberazione della memoria e possibili memory leak.
 
 prendiamo in esempio
-
+```rust
 pub struct Node{
     pub next: Option<Arc<Node>> // per velocizzare le assegnazioni nel main per esempio
 }
@@ -27,6 +27,7 @@ fn main(){
 
     father.next = son.clone();
 }
+```
 
 Andiamo a vedere esattamente cosa succede; Abbiamo una relazione Father -> Son ma anche Son -> Father, quindi ciclica.
 Stiamo usando anche degli Arc, quindi abbiamo dopo l'ultima istruzione
@@ -38,6 +39,7 @@ Strong = 1 per il primo new e poi entrambi i clone aumentano di 1 il corrispetti
 
 a fine scope del main, con il tratto drop perderemo un count strong per entrambi. Ma avremo comunque strong = 1 su entrambi e quindi la memoria non verrà rilasciata (a meno che non si arrivi a Strong =0 ), per questo dovremmo utilizzare dei puntatori Weak, ottenuti attraverso un downgrade partendo da un puntatore strong. I weak possono essere portati a Strong solo se è ancora disponibile uno Strong, e non possono accedere come weak direttamente alla memoria.
 
+```rust
 pub struct Node{
     pub next: Option<Weak<Node>>
 }
@@ -48,6 +50,7 @@ fn main(){
 
     father.next = Arc::downgrade(son.clone);
 }
+```
 
 Cosi facendo avremo
 strong = 1 e weak =1 per entrambe, e a fine scope avremo strong=0 e conseguente liberazione mem

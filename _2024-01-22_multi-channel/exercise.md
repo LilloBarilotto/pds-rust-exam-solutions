@@ -1,9 +1,11 @@
 ## Teoria 1
 Sia data la struttura LinkedList<T> definita come:
+```rust
 pub struct LinkedList<'a, T> {
     pub val: Option<T>,
     pub next: Option<&'a Box<LinkedList<'a, T>>>,
 } 
+```
 
 Un elemento in lista occupa in memoria:
  stack:
@@ -25,12 +27,13 @@ conditions nel momento in cui i thread debbano accedere in scrittura alla stessa
 distingua il caso in cui tale risorsa sia uno scalare e quella in cui sia una struttura più articolata.
 
 Immaginiamo di avere un vettore condiviso:
-
+```rust
 count = 0;
 while count != 5 {
     count = count + 1;
     print("{}", count);
 }
+```
 
 Potremmo pensare di scrivere questo per contare fino a 5 con N thread, e poi uscire, ma cosa succedere nel caso in cui (siamo a count = 4 ) ed N1 ed N2 accedono contemporaneamente nel while:
     N1: accede e vede count=4,  fa count = 4+1, poi N2 in mezzo fa il suo calcolo, fa print ma esce un valore strano, fa print 6, e continua non bloccando il while

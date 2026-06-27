@@ -1,7 +1,4 @@
 ## Teoria 1 (3pt)
-
-
-
 1)
 Riga 14: "last: {(c8)}"
 Riga 15: "res: 3"
@@ -31,7 +28,7 @@ cvar.wait_while(started, |s|, !*s)
 ## Teoria 3 (3pt)
 Il codice seguente genera un errore di compilazione: spiegare perché e indicare come 
 modificare la struct S (attraverso l'aggiunta di tratti) per renderlo compilabile ed eseguibile. 
- 
+```rust
 #[derive(Debug)] 
 struct S { 
     i: i32, 
@@ -47,6 +44,7 @@ fn main() {
     } 
     println!("{:?}",v); 
 }
+```
 
 Come soluzione basterebbe mettere Copy, Clone nella derive
 perchè altrimenti s (che viene inferito come : S perchè va dentro il v.push(s)) viene fatto il move con il push, quindi bisogna dargli copy e clone per non fare la move del valore.

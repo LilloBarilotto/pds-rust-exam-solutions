@@ -1,5 +1,5 @@
 ## Teoria 1
-
+```rust
 Struct Counter {
     counter = Arc<Mutex<usize>>
 }
@@ -25,6 +25,7 @@ impl Counter {
     
     }
 }
+```
 
 I mutex vengono utilizzati in un contesto thread-safe attraverso l'incapsulamento/wrap in un Arc, così da poter condividere la struttura del mutex attraverso riferimenti forti o deboli, così che la risorsa venga rilasciata effettivamente solo quando l'ultimo riferimento strong verrà rilasciato.
 Quello che ogni thread può fare è quindi operare su un clone di una istanza di Counter.
@@ -52,6 +53,7 @@ L'uso dei tratti permette di specificare un insieme di metodi, argomenti e tipi 
 I tratti possono essere quelli già definiti da RUST, e poi implementare dei metodi comuni per le nostre strutture (es. Trait Debug, Clone, Copy, Drop, etc.)
 Di sotto un esempio di un tratto "Special" con un metodo comune che ha una definizione di default.
 
+```rust
 trait Special{
     fn special(&self: S)
     where S: Display {
@@ -76,3 +78,4 @@ fn main(){
     p.special();
     m.special();
 }
+```

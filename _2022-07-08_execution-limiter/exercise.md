@@ -6,6 +6,7 @@ concreti, usando dello pseudocodice, che possono generare questi fenomeni
 1. Dangling Pointer, punta a una zona di memoria che però non gli appartiene, il cui contenuto è quindi sconosciuto e le conseguenze imprevedibili. Questo lo otteniamo riutilizzando un puntatore che magari la quale memoria è stata già rilasciata e riassegnata ad altri, per esempio tramite una free.
 PSEUDO CODICE
 
+```rust
 int main(){
     int * ptr = malloc(sizeof(int));
     free(ptr);
@@ -14,6 +15,7 @@ int main(){
 
     return 0;
 }
+```
 
 
 2. Memory Leakage. Quando non facciamo deallocazione esplicita della memoria, in questo caso otteniamo una perdita di memoria RAM usabile da altri processi/thread.
@@ -26,7 +28,7 @@ int main(){
 2. Memory Leakage. Questo avviene quando effettuiamo una Double Free, dopo aver copiato un puntatore facciamo la free della memoria usando entrambi i puntatori. In questo caso quello che proviamo a fare è liberare memoria che non è nostra. In RUST ciò viene evitato grazie alla implementazione del tratto Drop che viene chiamato quando si esce da uno scope della variabile e alla mutua esclusione tra i tratti Drop e Copy.
 
 PSEUDO CODICE.
-
+```rust
 int main(){
     int *ptr = malloc(5);
     int *ptr2 = ptr;
@@ -35,10 +37,12 @@ int main(){
     free(ptr2); // a chi stiamo togliendo la memoria che non è più di nostra competenza?
     return 0;
 }
+```
 
 3. Wild Pointer, se non inizializziamo il puntatore e cerchiamo di usarlo non sappiamo a cosa sta effettivamente puntando. Problematica del codice con puntatori nativi.
 PSEUDO
 
+```rust
 int main (){
     int *ptr;
 
@@ -46,6 +50,7 @@ int main (){
 
     return 0;
 }
+```
 
 
 

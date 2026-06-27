@@ -25,6 +25,7 @@ Nel caso in cui una sincronizzazione di stati di una variabile Mutex sia gestita
 In particolare questo può succedere quando, dopo aver fatto partire due thread, il thread che fa partire la notifica arriva su cv.notify_all/notify_one() prima ancora che i thread che devono aspettare lo stato arrivino sulla cv.wait, questo perchè ci possono essere ottimizzazioni da parte della CPU per mandare avanti un thread rispetto a un altro.
 Un esempio 
 
+```rust
 fn main(){
  let bool = Arc::new(( Mutex::new(false), Condvar::new());
  let bool_c =       bool.clone();
@@ -43,6 +44,7 @@ fn main(){
  cv.notify_one(); // se arrivo qui prima di cv.wait? rimane in attesa infinita il thread interno.
  jh.join().unwrap(); // se interno rimane in attesa qui mi blocco all'infinito pure io.
 }
+```
 
 La soluzione è cambiare la cv.wait in un while con wait interna oppure usando una cv.wait_while(guard, |s| !*s);
 

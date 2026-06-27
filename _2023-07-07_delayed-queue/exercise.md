@@ -2,6 +2,7 @@
 Si spieghi il concetto di possesso in relazione agli smart pointers. Come viene gestito il ciclo delle
 risorse quando si utilizzano smart pointers?
 Infine, si espliciti il ciclo di vita delle risorse nel seguente esempio:
+```rust
 {
     let mut i = 10;
     let bi1 = Box::new(i);
@@ -10,6 +11,7 @@ Infine, si espliciti il ciclo di vita delle risorse nel seguente esempio:
     i = *bi2;
     println!("{} {:?} {:?}", i, bi1, bi2);
 }
+```
 
 Gli smart pointer sono realizzati mediante struct, implementano i tratti Deref e DerefMut e permettono di avere comporntamenti e regole di ownership più complesse e flessibili rispetto ai puntatori nativi, per esempio mediante:
 - Box<T>, il ciclo di vita viene passato alla variabile che prende il controllo del puntatore, potendo così estendere il ciclo di vita.
@@ -68,7 +70,7 @@ Per gestire le situazioni di Option e Result possiamo usare match funzione_ritor
     // possiamo usare t
 } 
 
-
+```rust
 fn main() {
     let mut l = HashMap::<String, usize>::new();
     l.push("Marco".to_string(), 10)
@@ -134,5 +136,5 @@ fn ottieni_nome_utente(id: i32) -> Result<Option<String>, DbError> {
         None => Ok(None),
     }
 }
-
+```
 
