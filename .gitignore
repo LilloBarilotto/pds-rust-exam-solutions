@@ -1,1 +1,7 @@
 /target
+
+# Output di esecuzione/test
+stderr
+stdout
+*.stderr
+*.stdout
